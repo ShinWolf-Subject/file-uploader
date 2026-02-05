@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const formData = new FormData();
       formData.append('file', selectedFile);
       
-      const uploadResponse = await fetch(`/upload?key=${key}`, {
+      const uploadResponse = await fetch(`/upload?api_key=${key}`, {
         method: 'POST',
         body: formData
       });
