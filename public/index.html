@@ -1,85 +1,88 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>File Uploader</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="/upd/script?v=574287384933" defer></script> 
-  <link rel="icon" href="https://res.cloudinary.com/dxaiqnppk/image/upload/v1770288341/pack_v2v18z.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <style>
-    body { font-family: "Poppins", sans-serif; min-height: 100vh; }
-    .material-symbols-rounded { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-    .upload-area { transition: all 0.2s ease; }
-    .upload-area.dragover { background-color: #fafafa; border-color: #71717a; }
-    .spinner { width: 16px; height: 16px; border: 2px solid transparent; border-top-color: white; border-radius: 50%; animation: spin 0.6s linear infinite; }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Uploader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/upd/script?v=574287384933" defer></script>
+    <link rel="icon" href="https://res.cloudinary.com/dxaiqnppk/image/upload/v1770288341/pack_v2v18z.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        body { font-family: "Poppins", sans-serif; min-height: 100vh; }
+        .material-symbols-rounded { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .upload-area { transition: all 0.2s ease; }
+        .upload-area.dragover { background-color: #fafafa; border-color: #71717a; }
+        .spinner { width: 16px; height: 16px; border: 2px solid transparent; border-top-color: white; border-radius: 50%; animation: spin 0.6s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
 </head>
 <body class="bg-gradient-to-br from-zinc-50 to-zinc-100 min-h-screen flex items-center justify-center p-4" face="Poppins">
-  <div class="bg-white rounded-xl shadow-lg w-full max-w-lg overflow-hidden">
-    <div class="bg-gradient-to-r from-zinc-700 to-zinc-800 text-white p-6 text-center">
-      <h1 class="text-2xl font-bold mb-1">File Uploader</h1>
-      <p class="opacity-90">Unggah file dan dapatkan tautan</p>
-    </div>
-    <div class="p-6">
-      <div class="upload-area border-2 border-dashed border-zinc-300 rounded-lg p-10 text-center cursor-pointer mb-4 hover:border-zinc-400 hover:bg-zinc-50" id="uploadArea">
-        <span class="material-symbols-rounded text-5xl text-zinc-600 mb-3">
-          cloud_upload
-        </span>
-        <h3 class="text-lg font-semibold text-zinc-700 mb-1">Pilih atau tarik file ke sini</h3>
-        <p class="text-zinc-500 text-sm">Semua jenis file didukung. maksimal 100MB.</p>
-        <input type="file" id="fileInput" class="hidden">
-      </div>
-      <div id="status" class="hidden rounded-lg p-3 mb-4 text-center text-sm font-medium"></div>
-      <div id="fileBox" class="hidden bg-zinc-50 border border-zinc-200 rounded-lg p-4 mb-4">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center">
-            <span class="material-symbols-rounded text-zinc-600 mr-3">
-              description
-            </span>
-            <div>
-              <div id="fileName" class="font-medium text-zinc-800"></div>
-              <div id="fileSize" class="text-xs text-zinc-500 mt-0.5"></div>
+    <div class="bg-white rounded-xl shadow-lg w-full max-w-lg overflow-hidden">
+        <div class="bg-gradient-to-r from-zinc-700 to-zinc-800 text-white p-6 text-center">
+            <h1 class="text-2xl font-bold mb-1">File Uploader</h1>
+            <p class="opacity-90">Unggah file dan dapatkan tautan</p>
+        </div>
+        <div class="p-6">
+            <div class="upload-area border-2 border-dashed border-zinc-300 rounded-lg p-10 text-center cursor-pointer mb-4 hover:border-zinc-400 hover:bg-zinc-50" id="uploadArea">
+                <span class="material-symbols-rounded text-5xl text-zinc-600 mb-3">
+                    cloud_upload
+                </span>
+                <h3 class="text-lg font-semibold text-zinc-700 mb-1">Pilih atau tarik file ke sini</h3>
+                <p class="text-zinc-500 text-sm">Semua jenis file didukung. maksimal 100MB.</p>
+                <input type="file" id="fileInput" class="hidden">
             </div>
-          </div>
-          <button id="removeFile" class="text-zinc-400 hover:text-zinc-600 p-1">
-            <span class="material-symbols-rounded">close</span>
-          </button>
-        </div>
-      </div>
-      <button id="uploadBtn" class="w-full bg-gradient-to-r from-zinc-700 to-zinc-800 hover:from-zinc-800 hover:to-zinc-900 text-white font-medium py-3 px-4 rounded-lg transition duration-200 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-        <span id="btnText">Upload File</span>
-        <div id="btnSpinner" class="hidden ml-2 spinner"></div>
-      </button>
-      <div id="results" class="hidden bg-gradient-to-r from-zinc-50 to-zinc-100 border border-zinc-200 rounded-lg p-4 mt-4">
-        <div class="flex items-center mb-3">
-          <span class="material-symbols-rounded text-zinc-700 mr-2">
-            check_circle
-          </span>
-          <h3 class="font-semibold text-zinc-800">Upload Berhasil!</h3>
-        </div>
-        <div class="space-y-3">
-          <div>
-            <div class="text-xs text-zinc-600 mb-1">Nama File:</div>
-            <div id="resultOriginal" class="text-sm font-medium text-zinc-800"></div>
-          </div>
-          <div>
-            <div class="text-xs text-zinc-600 mb-1">Tautan File:</div>
-            <div class="flex items-center">
-              <a id="resultUrl" href="#" target="_blank" class="text-sm text-zinc-700 hover:text-zinc-900 hover:underline truncate flex-1"></a>
-              <button id="copyBtn" class="ml-2 text-zinc-500 hover:text-zinc-700">
-                <span class="material-symbols-rounded text-sm">content_copy</span>
-              </button>
+            <div id="status" class="hidden rounded-lg p-3 mb-4 text-center text-sm font-medium"></div>
+            <div id="fileBox" class="hidden bg-zinc-50 border border-zinc-200 rounded-lg p-4 mb-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <span class="material-symbols-rounded text-zinc-600 mr-3">
+                            description
+                        </span>
+                        <div>
+                            <div id="fileName" class="font-medium text-zinc-800"></div>
+                            <div id="fileSize" class="text-xs text-zinc-500 mt-0.5"></div>
+                        </div>
+                    </div>
+                    <button id="removeFile" class="text-zinc-400 hover:text-zinc-600 p-1">
+                        <span class="material-symbols-rounded">close</span>
+                    </button>
+                </div>
             </div>
-          </div>
+            <button id="uploadBtn" class="w-full bg-gradient-to-r from-zinc-700 to-zinc-800 hover:from-zinc-800 hover:to-zinc-900 text-white font-medium py-3 px-4 rounded-lg transition duration-200 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                <span id="btnText">Upload File</span>
+                <div id="btnSpinner" class="hidden ml-2 spinner"></div>
+            </button>
+            <div id="results" class="hidden bg-gradient-to-r from-zinc-50 to-zinc-100 border border-zinc-200 rounded-lg p-4 mt-4">
+                <div class="flex items-center mb-3">
+                    <span class="material-symbols-rounded text-zinc-700 mr-2">
+                        check_circle
+                    </span>
+                    <h3 class="font-semibold text-zinc-800">Upload Berhasil!</h3>
+                </div>
+                <div class="space-y-3">
+                    <div>
+                        <div class="text-xs text-zinc-600 mb-1">Nama File:</div>
+                        <div id="resultOriginal" class="text-sm font-medium text-zinc-800"></div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-zinc-600 mb-1">Tautan File:</div>
+                        <div class="flex items-center">
+                            <a id="resultUrl" href="#" target="_blank" class="text-sm text-zinc-700 hover:text-zinc-900 hover:underline truncate flex-1"></a>
+                            <button id="copyBtn" class="ml-2 text-zinc-500 hover:text-zinc-700">
+                                <span class="material-symbols-rounded text-sm">content_copy</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center text-lg mt-4 text-gray-600">
+                <p class="text-gray-500">[!] Semua file dan link anda akan dihapus secara otomatis pada tanggal <strong>7 Maret 2026</strong></p>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </body>
 </html>
